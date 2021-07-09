@@ -33,16 +33,17 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">Close</button>
-                <button type="button" class="btn btn-primary"  @click="addPost">Save changes</button>
+                <button type="button" class="btn btn-primary" @click.prevent="addPost">Save changes</button>
             </div>
-            </form>
-        </div>
+        </form>
+    </div>
     </div>
     </div>
 </template>
 <script>
 
 export default {
+    name: "CreateModal",
     data () {
         return {
             contacts: [],
@@ -67,12 +68,14 @@ export default {
             })
                 .then(response => {
                     this.contacts = []
-                    //this.getPosts()
-                    //this.closeModal()
+
+                    this.closeModal()
 
                 })
+                .finally(this.loading = false)
         }
     },
+
 
 };
 </script>

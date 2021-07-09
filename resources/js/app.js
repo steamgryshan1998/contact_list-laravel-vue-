@@ -10,7 +10,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Contacts from "./components/Contacts";
 window.Vue = require('vue').default;
-let axios = require('axios');
+//let axios = require('axios');
 
 /**
  * The following block of code may be used to automatically register your

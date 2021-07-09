@@ -90,6 +90,7 @@ export default {
                 address: '',
                 updated_at: ''
             },
+            errored: false,
             isCreateModalVisible: false,
             timestamp:new Date().getFullYear()
         };
@@ -97,18 +98,16 @@ export default {
     created() {
         setInterval(this.nowDate, 1000);
     },
-    mounted() {
-        this.getPosts()
-    },
     methods: {
         showCreateModal() {
             this.isCreateModalVisible = true;
         },
         closeCreateModal() {
             this.isCreateModalVisible = false;
+            this.getPosts();
         },
-        async getPosts() {
-            await axios
+         getPosts() {
+            axios
             .get("api/contact")
             .then(response => {
                 this.contacts = response.data
@@ -142,6 +141,9 @@ export default {
                 })
 
         },
+    },
+    mounted() {
+        this.getPosts()
     },
 };
 </script>

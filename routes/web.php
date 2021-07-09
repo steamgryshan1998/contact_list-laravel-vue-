@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +14,5 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    $contacts = DB::table('contacts')->get();
-    return view('welcome', ['contacts' => $contacts]);
-});
+Route::get('/{any}', [HomeController::class, 'index'])->where('any', '.*');
 
