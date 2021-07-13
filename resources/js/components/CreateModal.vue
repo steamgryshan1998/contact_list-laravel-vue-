@@ -14,21 +14,21 @@
                 <div class="mb-3 row">
                     <label for="name" class="col-sm-4 col-form-label">Name</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" v-model="contact.name" id="name" placeholder="Please enter your name" >
+                        <input type="text" class="form-control" v-model="contact.name" id="name" placeholder="Please enter your name" />
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" v-model="contact.email" id="email" placeholder="test@domain.com">
+                        <input type="text" class="form-control" v-model="contact.email" id="email" placeholder="test@domain.com" />
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="address" class="col-sm-4 col-form-label">Address</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" v-model="contact.address" id="address" placeholder="New Channel Name">
+                        <input type="text" class="form-control" v-model="contact.address" id="address" placeholder="New Channel Name" />
                     </div>
                 </div>
 
@@ -73,6 +73,9 @@ export default {
     },
     methods: {
         closeModal() {
+            this.contact.name = "";
+            this.contact.email = "";
+            this.contact.address = "";
             this.$emit('close');
         },
         addPost() {
@@ -85,7 +88,6 @@ export default {
             })
                 .then(response => {
                     this.contacts = []
-
                     this.closeModal()
 
                 })
@@ -103,9 +105,8 @@ export default {
                 .then(response => {
                     this.contacts = []
                     this.closeModal()
-                    this.contact.name = this.name;
-                    this.contact.email = this.email;
-                    this.contact.address = this.address;
+
+
 
                 })
                 // .finally(this.contact.id = null // fixed bug with button add new after edit
@@ -113,13 +114,6 @@ export default {
         }
     },
 
-    mounted() {
-        if(this.contact){
-            this.name = this.contact.name;
-            this.email = this.contact.email;
-            this.address = this.contact.address;
-        }
-    },
 
 
 };
