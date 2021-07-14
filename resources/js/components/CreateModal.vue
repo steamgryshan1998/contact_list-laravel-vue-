@@ -14,27 +14,36 @@
                 <div class="mb-3 row">
                     <label for="name" class="col-sm-4 col-form-label">Name</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" v-model="contact.name" id="name" placeholder="Please enter your name" />
+                        <input type="text" class="form-control" :class="validate.name === undefined ? '' : ' is-invalid'" v-model="contact.name" id="name" placeholder="Please enter your name" />
+                        <div v-for="error in validate.name" v-if="validate.name !== null" class="invalid-feedback">
+                            {{ error }}
+                        </div>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="email" class="col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" v-model="contact.email" id="email" placeholder="test@domain.com" />
+                        <input type="text" class="form-control" :class="validate.email === undefined ? '' : ' is-invalid'" v-model="contact.email" id="email" placeholder="test@domain.com" />
+                        <div v-for="error in validate.email" v-if="validate.email !== null" class="invalid-feedback">
+                            {{ error }}
+                        </div>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="address" class="col-sm-4 col-form-label">Address</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" v-model="contact.address" id="address" placeholder="New Channel Name" />
+                        <input type="text" class="form-control" :class="validate.address === undefined ? '' : ' is-invalid'" v-model="contact.address" id="address" placeholder="New Channel Name" />
+                        <div v-for="error in validate.address" v-if="validate.address !== null" class="invalid-feedback">
+                            {{ error }}
+                        </div>
                     </div>
                 </div>
 
                 </div>
                 <div class="col-md-4">
-                    <img src="contact_list.com/public/images/cross.png" alt="" width="150px" height="150px">
+                    <img :src="require('../../../public/images/cross.png').default" alt="" width="150px" height="150px">
                 </div>
                 </div>
             </div>
@@ -58,7 +67,8 @@ export default {
         },
         contact: {
             type: Object,
-            default: null
+            default: null,
+            id: null
         }
     },
     name: "CreateModal",
@@ -69,6 +79,9 @@ export default {
                 name: '',
                 email: '',
                 address: '',
+
+                validate:{
+                },
         };
     },
     methods: {
@@ -76,6 +89,8 @@ export default {
             this.contact.name = "";
             this.contact.email = "";
             this.contact.address = "";
+            this.contact.id = null;
+            this.validate = {};
             this.$emit('close');
         },
         addPost() {
@@ -91,6 +106,9 @@ export default {
                     this.closeModal()
 
                 })
+                .catch(error => {
+                    this.validate = error.response.data.errors;
+                })
                 .finally(this.loading = false)
         },
         editPost() {
@@ -105,9 +123,9 @@ export default {
                 .then(response => {
                     this.contacts = []
                     this.closeModal()
-
-
-
+                })
+                .catch(error => {
+                    this.validate = error.response.data.errors;
                 })
                 // .finally(this.contact.id = null // fixed bug with button add new after edit
                 //     )

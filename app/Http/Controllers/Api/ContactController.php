@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactCreateRequest;
+use App\Http\Requests\ContactUpdateRequest;
 use App\Http\Resources\ContactResource;
 use App\Models\Contact;
 use http\Env\Response;
@@ -28,9 +30,9 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactCreateRequest $request)
     {
-        $created_contact = Contact::create($request->all());
+        $created_contact = Contact::create($request->validated());
 
 
         return new ContactResource($created_contact);
@@ -54,9 +56,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(ContactUpdateRequest $request, Contact $contact)
     {
-        $contact->update($request->all());
+        $contact->update($request->validated());
         return new ContactResource($contact);
     }
 
