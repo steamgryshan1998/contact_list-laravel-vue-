@@ -11,9 +11,7 @@
                             <button class="btn btn-secondary dropdown-toggle profile_header" type="button"
                                     id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <a href="#">
-                                    <img src="1.jpg" alt="mdo" width="33" height="33" class="rounded-circle">
-                                </a>
+                                <i class="far fa-user-circle"></i>
                                 Profile
                             </button>
                         </div>
@@ -28,28 +26,14 @@
                 <div class="col-2">
                     <button type="button" class="btn contact_button btn-primary " @click="showCreateModal">
                         <!--                todo font awesome-->
-                        <i class="bi bi-person-plus">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-person-plus" viewBox="0 0 16 16">
-                                <path
-                                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                                <path fill-rule="evenodd"
-                                      d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                            </svg>
-                        </i>Add new
+                        <i class="fas fa-user-plus"></i>
+                        Add new
                     </button>
                 </div>
                 <div class="col-2">
-                    <button type="button" class="btn btn-danger del align-middle contact_button" @click="deleteMarked">
-                        <i class="bi bi-person-x">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-person-x" viewBox="0 0 16 16">
-                                <path
-                                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                                <path fill-rule="evenodd"
-                                      d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
-                            </svg>
-                        </i>Delete marked
+                    <button type="button" class="btn btn-danger del align-middle delete_marked_button" @click="deleteMarked">
+                        <i class="fas fa-user-times"></i>
+                        Delete marked
                     </button>
                 </div>
             </div>
@@ -354,7 +338,15 @@ table {
 
 .contact_button {
     margin-top: 1rem;
-    margin-left: 4.5rem;
+    margin-left: 130px;
+    margin-bottom: 0.5rem;
+
+}
+
+.delete_marked_button{
+    margin-top: 1rem;
+    margin-left: 5rem;
+    margin-bottom: 0.5rem;
 
 }
 
